@@ -6,8 +6,8 @@ This problem provides practice at:
 
 Authors: David Mutchler, Vibha Alangar, Matt Boutell, Dave Fisher,
          Mark Hays, Amanda Stouder, Aaron Wilkin, their colleagues,
-         and PUT_YOUR_NAME_HERE.
-"""  # TODO: 1. PUT YOUR NAME IN THE ABOVE LINE.
+         and Haiden Smith.
+"""  # DONE: 1. PUT YOUR NAME IN THE ABOVE LINE.
 
 
 def main():
@@ -29,10 +29,27 @@ def run_test_zero_changer():
     print()
     print('Test 1:')
     print('  Expected:', expected1)
-    print('  Actual:  ', test1)
+    print('  Actual:  ', zero_changer(test1))
 
+    # Test 2:
+    test2 = ([8, 4, 11, 9], [77, 11, 11, 1, 5, 0], [4, 4, 4], [4, 11, 4])
+    expected1 = ([8, 4, 11, 9], [77, 11, 11, 1, 5, 4], [4, 4, 4], [4, 11, 4])
+    zero_changer(test2)
+    print()
+    print('Test 2:')
+    print('  Expected:', expected1)
+    print('  Actual:  ', zero_changer(test2))
+
+    # Test 3:
+    test3 = ([0, 0, 0, 0], [0, 0, 0, 0, 0, 0], [0, 0, 0], [0, 0, 0])
+    expected1 = ([1, 2, 3, 4], [5, 6, 7, 8, 9, 10], [11, 12, 13], [14, 15, 16])
+    zero_changer(test3)
+    print()
+    print('Test 3:')
+    print('  Expected:', expected1)
+    print('  Actual:  ', zero_changer(test3))
     # -------------------------------------------------------------------------
-    # TODO: 2. Write at least 2 additional tests for the
+    # DONE: 2. Write at least 2 additional tests for the
     #    zero_changer
     # function.  Try to choose some unexpected things like empty lists
     # or an empty tuple, or a list with no zeros, etc.
@@ -64,7 +81,7 @@ def zero_changer(tuple_of_lists):
       :type tuple_of_lists: tuple of list[int]
     """
     # -------------------------------------------------------------------------
-    # TODO: 3. Implement and test this function.
+    # DONE: 3. Implement and test this function.
     #   Note that you should write its TEST function first (above).
     # -------------------------------------------------------------------------
     # -------------------------------------------------------------------------
@@ -72,9 +89,18 @@ def zero_changer(tuple_of_lists):
     #    DIFFICULTY:      7
     #    TIME ESTIMATE:  10 minutes.
     # -------------------------------------------------------------------------
-
-
+    x = 1
+    lis = list(tuple_of_lists)
+    for k in range(len(lis)):
+        for j in range(len(lis[k])):
+            if lis[k][j] == 0:
+                lis[k][j] = x
+                x = x + 1
+    tup = tuple(lis)
+    return tup
 # -----------------------------------------------------------------------------
 # Calls  main  to start the ball rolling.
 # -----------------------------------------------------------------------------
+
+
 main()
