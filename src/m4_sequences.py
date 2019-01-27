@@ -37,9 +37,9 @@ import rosegraphics as rg
 def main():
     """ Calls the   TEST   functions in this module. """
     run_test_practice_problem4a()
-    # run_test_practice_problem4b()
-    # run_test_practice_problem4c()
-    # run_test_practice_problem4d()
+    run_test_practice_problem4b()
+    run_test_practice_problem4c()
+    run_test_practice_problem4d()
 
 
 def is_prime(n):
@@ -135,7 +135,7 @@ def practice_problem4a(sequence):
       :type sequence: list | tuple | string
     """
     ###########################################################################
-    # TODO: 2. Implement and test this function.
+    # DONE: 2. Implement and test this function.
     #     The testing code is already written for you (above).
     ###########################################################################
     # DIFFICULTY AND TIME RATINGS (see top of this file for explanation)
@@ -143,9 +143,8 @@ def practice_problem4a(sequence):
     #    TIME ESTIMATE:   15 minutes.
     ###########################################################################
     index_list = []
-    x = 0
-    for k in range(len(sequence)):
-        if sequence[x] == sequence[k]:
+    for k in range(len(sequence) - 1):
+        if sequence[k] == sequence[k + 1]:
             index_list.append(k)
     return index_list
 
