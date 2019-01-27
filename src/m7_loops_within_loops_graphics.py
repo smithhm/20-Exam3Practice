@@ -35,7 +35,7 @@ import rosegraphics as rg
 def main():
     """ Calls the   TEST   functions in this module. """
     run_test_hourglass()
-    run_test_many_hourglasses()
+    # run_test_many_hourglasses()
 
 
 def run_test_hourglass():
@@ -90,7 +90,7 @@ def hourglass(window, n, point, radius, color):
     a color that rosegraphics understands.
     """
     # -------------------------------------------------------------------------
-    # TODO: 2. Implement and test this function.
+    # DONE: 2. Implement and test this function.
     #       We provided some tests for you (above).
     # -------------------------------------------------------------------------
     ###########################################################################
@@ -102,6 +102,26 @@ def hourglass(window, n, point, radius, color):
     #    DIFFICULTY:      8
     #    TIME ESTIMATE:  25 minutes (warning: this problem is challenging)
     # -------------------------------------------------------------------------
+    x = point.x
+    y = point.y
+    r = radius
+    for k in range(n):
+        for j in range(k + 1):
+            h = ((2 * r) ** 2 - (r ** 2)) ** (1 / 2)
+            lower_circle = rg.Circle(rg.Point(x - (k * r) + (2 * j * r), y + (h * k)), r)
+            upper_circle = rg.Circle(rg.Point(x - (k * r) + (2 * j * r), y - (h * k)), r)
+            upper_circle.fill_color = color
+            lower_circle.fill_color = color
+            lower_circle.attach_to(window)
+            upper_circle.attach_to(window)
+
+            upper_line = rg.Line(rg.Point(upper_circle.center.x - r, upper_circle.center.y),
+                                 rg.Point(upper_circle.center.x + r, upper_circle.center.y))
+            lower_line = rg.Line(rg.Point(lower_circle.center.x - r, lower_circle.center.y),
+                                 rg.Point(lower_circle.center.x + r, lower_circle.center.y))
+            upper_line.attach_to(window)
+            lower_line.attach_to(window)
+    window.render()
 
 
 def run_test_many_hourglasses():
