@@ -6,8 +6,8 @@ This problem provides practice at:
 
 Authors: David Mutchler, Vibha Alangar, Matt Boutell, Dave Fisher,
          Mark Hays, Amanda Stouder, Aaron Wilkin, their colleagues,
-         and PUT_YOUR_NAME_HERE.
-"""  # TODO: 1. PUT YOUR NAME IN THE ABOVE LINE.
+         and Haiden Smith.
+"""  # DONE: 1. PUT YOUR NAME IN THE ABOVE LINE.
 
 ###############################################################################
 # Students:
@@ -34,8 +34,8 @@ import rosegraphics as rg
 
 def main():
     """ Calls the   TEST   functions in this module. """
-    run_test_hourglass()
-    # run_test_many_hourglasses()
+    # run_test_hourglass()
+    run_test_many_hourglasses()
 
 
 def run_test_hourglass():
@@ -184,7 +184,7 @@ def many_hourglasses(window, square, m, colors):
     each of which denotes a color that rosegraphics understands.
     """
     # -------------------------------------------------------------------------
-    # TODO: 3. Implement and test this function.
+    # DONE: 3. Implement and test this function.
     #       We provided some tests for you (above).
     # -------------------------------------------------------------------------
     ###########################################################################
@@ -200,9 +200,27 @@ def many_hourglasses(window, square, m, colors):
     #                         a correct "hourglass" function above)
     #    TIME ESTIMATE:  20 minutes (warning: this problem is challenging)
     # -------------------------------------------------------------------------
+    side_l = square.length_of_each_side
+    upper = rg.Point(square.center.x - side_l / 2, square.center.y - side_l / 2)
+    lower = rg.Point(square.center.x + side_l / 2, square.center.y + side_l / 2)
+    point = rg.Point(square.center.x, square.center.y)
+    radius = side_l / 2
 
+    for k in range(m):
+        rectangle = rg.Rectangle(upper, lower)
+        rectangle.attach_to(window)
+        hourglass(window, k + 1, point, radius, colors[k % len(colors)])
+        point.x = point.x + (k + 3 / 2) * side_l
+        upper.x = lower.x
+        lower.x = lower.x + (k + 2) * side_l
+        upper.y = upper.y - ((2 * radius) ** 2 - (radius ** 2)) ** (1 / 2)
+        lower.y = lower.y + ((2 * radius) ** 2 - (radius ** 2)) ** (1 / 2)
+
+    window.render()
 
 # -----------------------------------------------------------------------------
 # Calls  main  to start the ball rolling.
 # -----------------------------------------------------------------------------
+
+
 main()
